@@ -1,7 +1,21 @@
-.selected {
-    background-color: aquamarine;
-}
 .usersList {
     width: 200px;
-    border: 1px solid red;
+    /* border: 1px solid red; */
+    padding-right: 10px;
+}
+
+.item {
+    list-style-type: none;
+    background: linear-gradient(white, rgb(194, 194, 194));
+    width: 100%;
+    margin-right: 10px;
+}
+
+.item:hover {
+    background: linear-gradient(white, rgb(127, 193, 255));
+    cursor: pointer;
+}
+
+.selected {
+    background: linear-gradient(white, aquamarine);
 }

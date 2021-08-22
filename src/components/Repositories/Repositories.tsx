@@ -17,8 +17,17 @@ export const Repositories: React.FC<any> = ({ selectedUser, setUserDetails }) =>
         }
     }, [selectedUser])
 
-    return (<div className={s.header}>
-        {repo?.map((u: any) => <div>{u.name} <hr /></div>)}
+    return (<div className={s.repos}>
+        {repo?.map((u: any) =>
+            <div>
+                <a href={u.html_url} target="_blank">{u.name}</a>
+                <div className={s.data}>
+                    {u.language} / updated - {u.updated_at}
+                </div>
+
+                <hr />
+            </div>
+        )}
 
     </div>);
 }
