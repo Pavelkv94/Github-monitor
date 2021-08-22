@@ -1,3 +1,7 @@
 .selected {
     background-color: aquamarine;
 }
+.usersList {
+    width: 200px;
+    border: 1px solid red;
+}

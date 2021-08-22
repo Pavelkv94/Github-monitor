@@ -59,7 +59,7 @@ export function Github() {
         <div className={s.main}>
             <Users users={users} selectedUser={selectedUser} setSelectedUser={setSelectedUser} />
             <UserInfo userDetails={userDetails} />
-            <Repositories />
+            <Repositories selectedUser={selectedUser} setUserDetails={setUserDetails} />
         </div>
 
     </div>);

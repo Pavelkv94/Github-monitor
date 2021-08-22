@@ -8,10 +8,12 @@ export const UserInfo: React.FC<any> = ({ userDetails }) => {
 
 
     return (
-        <div>Details
+        <div className={s.details}>Details
             <br />
             {userDetails && <div>
-                <img src={userDetails.avatar_url} alt="" />
+
+                <img src={userDetails.avatar_url} alt="" className={s.ava} />
+
                 <br />
                 {userDetails.login}, followers: {userDetails.followers}
             </div>}
