@@ -10,10 +10,19 @@ type SearchResult = {
     items: SearchUserType[]
 }
 
+type UserType = {
+    login: string
+    id: number
+    avatar_url: string
+    followers: number
+}
+
 export function Github() {
     const [selectedUser, setSelectedUser] = useState<SearchUserType | null>(null)
+    const [userDetails, setUserDetails] = useState<UserType | null>(null)
     const [users, setUsers] = useState<SearchUserType[]>([])
     const [tempSearch, setTempSearch] = useState<string>("")
+    const [searchTerm, setSearchTerm] = useState<string>("")
 
     const fetchData = (value: string) => {
         axios.get<SearchResult>(`https://api.github.com/search/users?q=${value}`)
@@ -29,8 +38,17 @@ export function Github() {
     }, [selectedUser])
 
     useEffect(() => {
-        fetchData('')
-    }, [])
+        fetchData(tempSearch)
+    }, [searchTerm])
+
+    useEffect(() => {
+        if (!!selectedUser) {
+            axios.get<UserType>(`https://api.github.com/users/${selectedUser.login}`)
+                .then(res => {
+                    setUserDetails(res.data)
+                })
+        }
+    }, [selectedUser])
 
     return (<div className={s.container}>
         <div className={s.searchContainer}>
@@ -43,7 +61,7 @@ export function Github() {
                 />
                 <button
                     onClick={() => {
-                        fetchData(tempSearch)
+                        setSearchTerm(tempSearch)
                     }}
                 >
                     Find
@@ -66,7 +84,15 @@ export function Github() {
         </div>
         <div className={s.results}>
             <h2>Username</h2>
-            <div>Details</div>
+            <div>Details
+                <br />
+                {userDetails && <div>
+                    <img src={userDetails.avatar_url} alt="" />
+                    <br />
+                    {userDetails.login}, followers: {userDetails.followers}
+                    </div>}
+            </div>
+
         </div>
     </div>);
 }

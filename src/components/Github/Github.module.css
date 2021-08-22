@@ -1,3 +1,7 @@
 .selected {
     background-color: aquamarine;
 }
+
+.container {
+    display: flex;
+}
