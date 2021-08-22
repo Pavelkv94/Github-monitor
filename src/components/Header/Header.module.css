@@ -1,0 +1,16 @@
+.header {
+    background-color: #0064EB;
+    width: 100vw;
+    height: 60px;
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    width: 42px;
+    height: 40px;
+    background-image: url('./../../assets/Vector.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin: 0 20px;
+}

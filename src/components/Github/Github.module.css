@@ -1,7 +1,8 @@
-.selected {
-    background-color: aquamarine;
+.main {
+    display: flex;
 }
 
 .container {
     display: flex;
+    flex-direction: column;
 }

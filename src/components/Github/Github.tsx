@@ -1,5 +1,9 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import { Header } from '../Header/Header';
+import { Repositories } from '../Repositories/Repositories';
+import { UserInfo } from '../UserInfo/UserInfo';
+import { Users } from '../Users/Users';
 import s from './Github.module.css';
 
 type SearchUserType = {
@@ -51,49 +55,13 @@ export function Github() {
     }, [selectedUser])
 
     return (<div className={s.container}>
-        <div className={s.searchContainer}>
-            <div>
-                <input
-                    type="text"
-                    placeholder="search"
-                    value={tempSearch}
-                    onChange={(e) => { setTempSearch(e.currentTarget.value) }}
-                />
-                <button
-                    onClick={() => {
-                        setSearchTerm(tempSearch)
-                    }}
-                >
-                    Find
-                </button>
-            </div>
-            <div>
-                <ul>
-                    {users.map(u =>
-                        <li key={u.id}
-                            onClick={() => {
-                                setSelectedUser(u);
-                                //document.title = u
-                            }}
-                            className={selectedUser === u ? s.selected : ""}
-
-                        >{u.login}</li>)
-                    }
-                </ul>
-            </div>
+        <Header tempSearch={tempSearch} setTempSearch={setTempSearch} setSearchTerm={setSearchTerm} />
+        <div className={s.main}>
+            <Users users={users} selectedUser={selectedUser} setSelectedUser={setSelectedUser} />
+            <UserInfo userDetails={userDetails} />
+            <Repositories />
         </div>
-        <div className={s.results}>
-            <h2>Username</h2>
-            <div>Details
-                <br />
-                {userDetails && <div>
-                    <img src={userDetails.avatar_url} alt="" />
-                    <br />
-                    {userDetails.login}, followers: {userDetails.followers}
-                    </div>}
-            </div>
 
-        </div>
     </div>);
 }
 
