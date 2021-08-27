@@ -18,12 +18,14 @@ export const Header: React.FC<HeaderPropsType> = ({ value, setSearchTerm }) => {
     return (<div className={s.header}>
         <div className={s.logo}></div>
         <input
+            className={s.input}
             type="text"
             placeholder="search"
             value={tempSearch}
             onChange={(e) => { setTempSearch(e.currentTarget.value) }}
         />
         <button
+            className={s.btn}
             onClick={() => {
                 setSearchTerm(tempSearch)
             }}
