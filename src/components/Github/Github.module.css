@@ -8,13 +8,3 @@
     display: flex;
     flex-direction: column;
 }
-
-.empty {
-    width: 300px;
-    display: flex;
-    flex-direction: column;
-    font-size: 32px;
-    align-items: center;
-    margin: 200px auto;
-    color: rgba(0, 0, 0, 0.295);
-}

@@ -22,7 +22,7 @@ export const Repositories: React.FC<any> = ({ selectedUser, setUserDetails }) =>
             <div>
                 <a href={u.html_url} target="_blank">{u.name}</a>
                 <div className={s.data}>
-                    {u.language} / updated - {u.updated_at}
+                    <b>{u.language}  </b> / updated - {u.updated_at}
                 </div>
 
                 <hr />
