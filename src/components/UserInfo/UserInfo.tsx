@@ -1,24 +1,32 @@
-import React from 'react';
-import s from './UserInfo.module.css';
-
-
+import React from "react";
+import s from "./UserInfo.module.css";
+import Tilt from "react-parallax-tilt";
 
 export const UserInfo: React.FC<any> = ({ userDetails }) => {
-
-
-    return (
+  return (
+    <div className={s.details}>
+      {userDetails && (
         <div className={s.details}>
-            {userDetails && <div className={s.details}>
-                <img src={userDetails.avatar_url} alt="" className={s.ava} />
-                <div style={{ fontWeight: "bold" }}>{userDetails.name}</div>
-                <div>followers: {userDetails.followers}</div>
-                <div> go to me : <a href={userDetails.html_url} target="_blank">{userDetails.login}</a></div>
-                <div>public repos: {userDetails.public_repos}</div>
-                {userDetails.location && <div>location: {userDetails.location}</div>}
-            </div>}
+          <Tilt flipHorizontally>
+            <img src={userDetails.avatar_url} alt="" className={s.ava} />
+          </Tilt>
+          <br />
+          <div className={s.name}>{userDetails.name}</div>
+          <br />
+          <div className={s.description}>
+            <p>followers: {userDetails.followers}</p>
+            <p>
+              go to me: 
+              <a href={userDetails.html_url} target="_blank">
+                {userDetails.login}
+              </a>
+            </p>
+            <p> public repos: {userDetails.public_repos}</p>
+            {userDetails.location && <p>location: {userDetails.location}</p>}
+          </div>
+        
         </div>
-
-    );
-}
-
-
+      )}
+    </div>
+  );
+};

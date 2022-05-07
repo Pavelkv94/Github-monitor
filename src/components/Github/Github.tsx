@@ -1,64 +1,68 @@
-import axios from 'axios';
-import React, { useEffect, useState } from 'react';
-import { HeaderUp } from '../Header/Header';
-import { Repositories } from '../Repositories/Repositories';
-import { UserInfo } from '../UserInfo/UserInfo';
-import { Users } from '../Users/Users';
-import s from './Github.module.css';
-import { Segment, Icon, Header } from 'semantic-ui-react';
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { HeaderUp } from "../Header/Header";
+import { Repositories } from "../Repositories/Repositories";
+import { UserInfo } from "../UserInfo/UserInfo";
+import { Users } from "../Users/Users";
+import s from "./Github.module.css";
 
 export type SearchUserType = {
-	login: string
-	id: number
-}
+  login: string;
+  id: number;
+};
 export type SearchResult = {
-	items: SearchUserType[]
-}
+  items: SearchUserType[];
+};
 
 type UserType = {
-	login: string
-	id: number
-	avatar_url: string
-	followers: number
-}
+  login: string;
+  id: number;
+  avatar_url: string;
+  followers: number;
+};
 
 export function Github() {
-	const [selectedUser, setSelectedUser] = useState<SearchUserType | null>(null)
-	const [userDetails, setUserDetails] = useState<UserType | null>(null)
-	const [searchTerm, setSearchTerm] = useState<string>("")
+  const [selectedUser, setSelectedUser] = useState<SearchUserType | null>(null);
+  const [userDetails, setUserDetails] = useState<UserType | null>(null);
+  const [searchTerm, setSearchTerm] = useState<string>("");
 
-	useEffect(() => {
-		if (selectedUser) {
-			document.title = selectedUser.login
-		}
-	}, [selectedUser])
+  useEffect(() => {
+    if (selectedUser) {
+      document.title = selectedUser.login;
+    }
+  }, [selectedUser]);
 
-	useEffect(() => {
-		if (!!selectedUser) {
-			axios.get<UserType>(`https://api.github.com/users/${selectedUser.login}`)
-				.then(res => {
-					setUserDetails(res.data)
-				})
-		}
-	}, [selectedUser])
+  useEffect(() => {
+    if (!!selectedUser) {
+      axios
+        .get<UserType>(`https://api.github.com/users/${selectedUser.login}`)
+        .then((res) => {
+          setUserDetails(res.data);
+        });
+    }
+  }, [selectedUser]);
 
-	return (<div className={s.container}>
-		<HeaderUp setSearchTerm={(value: string) => setSearchTerm(value)} value={searchTerm} />
-		{searchTerm === ""
-			? <Segment placeholder style={{ height: '600px', margin: '10px' }}>
-				<Header icon >
-					<Icon name='user outline' />
-					Start with searching a GitHub user
-				</Header>
-			</Segment>
-			: <div className={s.main}>
-				<Users selectedUser={selectedUser} setSelectedUser={setSelectedUser} term={searchTerm} />
-				<UserInfo userDetails={userDetails} />
-				<Repositories selectedUser={selectedUser} setUserDetails={setUserDetails} />
-			</div>}
+  return (
+    <div className={s.container}>
+      <HeaderUp
+        setSearchTerm={(value: string) => setSearchTerm(value)}
+        value={searchTerm}
+      />
+      {searchTerm !== "" && (
+        <div className={s.main}>
+          <Users
+            selectedUser={selectedUser}
+            setSelectedUser={setSelectedUser}
+            term={searchTerm}
+          />
+          <UserInfo userDetails={userDetails} />
 
-
-	</div>);
+          <Repositories
+            selectedUser={selectedUser}
+            setUserDetails={setUserDetails}
+          />
+        </div>
+      )}
+    </div>
+  );
 }
-
-

@@ -1,9 +1,10 @@
 .header {
-    background-color: #0064EB;
-    width: 100vw;
+    background-color: #1d364e77;
+    width: 100%;
     height: 60px;
     display: flex;
     align-items: center;
+    justify-content: center;
 }
 
 .logo {

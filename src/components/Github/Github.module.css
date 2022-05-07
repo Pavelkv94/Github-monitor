@@ -1,10 +1,14 @@
-.main {
-    display: flex;
-    width: 80vw;
-    margin: 0 auto;
-}
-
 .container {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-self: center;
+  justify-content: center;
+}
+.main {
+  display: flex;
+  align-self: center;
+  justify-content: center;
+  margin-top: 6%;
+  width: 80%;
 }
