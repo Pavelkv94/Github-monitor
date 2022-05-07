@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/Github-monitor/static/css/main.47e48d33.chunk.css",
-    "main.js": "/Github-monitor/static/js/main.a32dbd87.chunk.js",
-    "main.js.map": "/Github-monitor/static/js/main.a32dbd87.chunk.js.map",
+    "main.css": "/Github-monitor/static/css/main.1f70e611.chunk.css",
+    "main.js": "/Github-monitor/static/js/main.b07dc729.chunk.js",
+    "main.js.map": "/Github-monitor/static/js/main.b07dc729.chunk.js.map",
     "runtime-main.js": "/Github-monitor/static/js/runtime-main.ecdda1a6.js",
     "runtime-main.js.map": "/Github-monitor/static/js/runtime-main.ecdda1a6.js.map",
     "static/css/2.6c952800.chunk.css": "/Github-monitor/static/css/2.6c952800.chunk.css",
@@ -12,7 +12,7 @@
     "static/js/3.3afd16a3.chunk.js.map": "/Github-monitor/static/js/3.3afd16a3.chunk.js.map",
     "index.html": "/Github-monitor/index.html",
     "static/css/2.6c952800.chunk.css.map": "/Github-monitor/static/css/2.6c952800.chunk.css.map",
-    "static/css/main.47e48d33.chunk.css.map": "/Github-monitor/static/css/main.47e48d33.chunk.css.map",
+    "static/css/main.1f70e611.chunk.css.map": "/Github-monitor/static/css/main.1f70e611.chunk.css.map",
     "static/js/2.6f3be350.chunk.js.LICENSE.txt": "/Github-monitor/static/js/2.6f3be350.chunk.js.LICENSE.txt",
     "static/media/semantic.min.css": "/Github-monitor/static/media/outline-icons.ddae9b1b.woff"
   },
@@ -20,7 +20,7 @@
     "static/js/runtime-main.ecdda1a6.js",
     "static/css/2.6c952800.chunk.css",
     "static/js/2.6f3be350.chunk.js",
-    "static/css/main.47e48d33.chunk.css",
-    "static/js/main.a32dbd87.chunk.js"
+    "static/css/main.1f70e611.chunk.css",
+    "static/js/main.b07dc729.chunk.js"
   ]
 }
