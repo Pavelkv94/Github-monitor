@@ -27,8 +27,9 @@ export const HeaderUp: React.FC<HeaderPropsType> = ({ value, setSearchTerm }) =>
 				}} />}
 			placeholder='Search...'
 			value={tempSearch}
+			size='large'
 			onChange={(e) => { setTempSearch(e.currentTarget.value) }}
-			style={{ width: '300px' }}
+			style={{ width: '400px' }}
 		/>
 	</div>);
 }
