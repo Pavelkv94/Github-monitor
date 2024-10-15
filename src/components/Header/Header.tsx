@@ -3,17 +3,12 @@ import s from "./Header.module.css";
 import searchIcon from "../../assets/search.svg";
 
 type HeaderPropsType = {
-  value: string;
+  searchTerm: string;
   setSearchTerm: (value: string) => void;
+  getUsers: () => void;
 };
 
-export const HeaderUp: React.FC<HeaderPropsType> = ({ value, setSearchTerm }) => {
-  const [tempSearch, setTempSearch] = useState<string>(value);
-
-  useEffect(() => {
-    setTempSearch(value);
-  }, [value]);
-
+export const HeaderUp: React.FC<HeaderPropsType> = ({ searchTerm, setSearchTerm, getUsers }) => {
   return (
     <div className={s.header}>
       <div className={s.searchContent}>
@@ -24,15 +19,20 @@ export const HeaderUp: React.FC<HeaderPropsType> = ({ value, setSearchTerm }) =>
           <input
             className={s.search}
             placeholder="Search..."
-            value={tempSearch}
+            value={searchTerm}
             onChange={(e) => {
-              setTempSearch(e.currentTarget.value);
+              setSearchTerm(e.currentTarget.value);
+            }}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" && searchTerm.length > 2) {
+                getUsers();
+              }
             }}
           />
           <div
             className={s.searchBtn}
             onClick={() => {
-              setSearchTerm(tempSearch);
+              searchTerm.length > 2 && getUsers();
             }}
           >
             <img src={searchIcon} width={26} />

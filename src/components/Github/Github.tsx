@@ -1,67 +1,44 @@
 import { useEffect, useState } from "react";
 import { HeaderUp } from "../Header/Header";
-import { Repositories } from "../Repositories/Repositories";
-import { UserInfo } from "../UserInfo/UserInfo";
-import { Users } from "../Users/Users";
+import { UsersTable } from "../UsersTable/UsersTable";
 import s from "./Github.module.css";
+import { useQuery } from "@tanstack/react-query";
+import { UserResponseType } from "../../types/input-types";
 
-export type SearchUserType = {
-  login: string;
-  id: number;
-};
-export type SearchResult = {
-  items: SearchUserType[];
+type GitHubPropsType = {
+  setDataIsLoaded: (value: boolean) => void;
 };
 
-type UserType = {
-  login: string;
-  id: number;
-  avatar_url: string;
-  followers: number;
-};
-
-export function Github() {
-  const [selectedUser, setSelectedUser] = useState<SearchUserType | null>(null);
-  const [userDetails, setUserDetails] = useState<UserType | null>(null);
+export function Github({ setDataIsLoaded }: GitHubPropsType) {
   const [searchTerm, setSearchTerm] = useState<string>("");
+  const [page, setPage] = useState<number>(1);
 
-  useEffect(() => {
-    if (selectedUser) {
-      document.title = selectedUser.login;
-    }
-  }, [selectedUser]);
+  const {
+    data: users,
+    error,
+    isLoading,
+    refetch: getUsers,
+  } = useQuery<UserResponseType>({
+    queryKey: ["users"],
+    queryFn: async (): Promise<UserResponseType> => {
+      const response = await fetch(`https://api.github.com/search/users?q=${searchTerm}&per_page=15&page=${page}`);
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      setDataIsLoaded(true);
+      return await response.json();
+    },
+    enabled: false,
+  });
 
   // useEffect(() => {
-  //   if (!!selectedUser) {
-  //     axios
-  //       .get<UserType>(`https://api.github.com/users/${selectedUser.login}`)
-  //       .then((res) => {
-  //         setUserDetails(res.data);
-  //       });
-  //   }
-  // }, [selectedUser]);
+  //   searchTerm.length > 2 && getUsers();
+  // }, [page, searchTerm]);
 
   return (
     <div className={s.container}>
-      <HeaderUp
-        setSearchTerm={(value: string) => setSearchTerm(value)}
-        value={searchTerm}
-      />
-      {searchTerm !== "" && (
-        <div className={s.main}>
-          <Users
-            selectedUser={selectedUser}
-            setSelectedUser={setSelectedUser}
-            term={searchTerm}
-          />
-          <UserInfo userDetails={userDetails} />
-
-          <Repositories
-            selectedUser={selectedUser}
-            setUserDetails={setUserDetails}
-          />
-        </div>
-      )}
+      <HeaderUp setSearchTerm={setSearchTerm} searchTerm={searchTerm} getUsers={getUsers} />
+      {users && <UsersTable users={users} page={page} setPage={setPage} getUsers={getUsers} />}
     </div>
   );
 }

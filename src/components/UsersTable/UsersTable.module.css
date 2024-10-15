@@ -1,0 +1,19 @@
+.usersList {
+  font-family: "Roboto", sans-serif;
+  margin: 0 auto;
+  width: 80%;
+  color: white;
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: 3fr 3fr 3fr;
+  grid-gap: 10px;
+}
+
+.noSearch {
+  font-family: "Roboto", sans-serif;
+  margin: 0 auto;
+  width: 80%;
+  color: white;
+  text-align: center;
+  font-size: 20px;
+}

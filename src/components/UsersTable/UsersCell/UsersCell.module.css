@@ -1,0 +1,12 @@
+.userCell {
+  display: flex;
+  padding: 10px;
+  border: 1px solid white;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.5s;
+}
+.userCell:hover {
+  background-color: rgb(255, 255, 255, 0.5);
+  transition: 0.5s;
+}

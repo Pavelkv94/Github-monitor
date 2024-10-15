@@ -6,10 +6,10 @@ body {
   height: 100vh;
   font-weight: 100;
   background: radial-gradient(#4677cc, #030001);
-  -webkit-overflow-y: hidden;
-  -moz-overflow-y: hidden;
-  -o-overflow-y: hidden;
-  overflow-y: hidden;
+  -webkit-overflow-y: scroll;
+  -moz-overflow-y: scroll;
+  -o-overflow-y: scroll;
+  overflow-y: scroll;
   -webkit-animation: fadeIn 1 1s ease-out;
   -moz-animation: fadeIn 1 1s ease-out;
   -o-animation: fadeIn 1 1s ease-out;
