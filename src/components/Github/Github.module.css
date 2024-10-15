@@ -1,0 +1,14 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-self: center;
+  justify-content: center;
+}
+.main {
+  display: flex;
+  align-self: center;
+  justify-content: center;
+  margin-top: 60px;
+  width: 80%;
+}

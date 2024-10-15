@@ -1,0 +1,26 @@
+.usersList {
+  width: 20%;
+  padding-right: 10px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 600;
+}
+
+.usersList ul {
+  padding: 0;
+}
+.item {
+  list-style-type: none;
+  background: linear-gradient(rgb(95, 114, 162), rgb(234, 235, 235));
+  width: 100%;
+  font-size: 18px;
+  padding: 2px;
+}
+
+.item:hover {
+  background: linear-gradient(white, rgb(127, 193, 255));
+  cursor: pointer;
+}
+
+.selected {
+  background: linear-gradient(white, rgb(127, 208, 255));
+}
