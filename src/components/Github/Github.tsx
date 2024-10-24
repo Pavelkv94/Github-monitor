@@ -14,6 +14,7 @@ export function Github({ setDataIsLoaded }: GitHubPropsType) {
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [page, setPage] = useState<number>(1);
   const [selectedLogin, setSelectedLogin] = useState<string | null>(null);
+  const [openRepo, setOpenRepo] = useState(false);
 
   const {
     data: users,
@@ -37,7 +38,7 @@ export function Github({ setDataIsLoaded }: GitHubPropsType) {
     error: userError,
     refetch: getUser,
   } = useQuery<SelectedUserType>({
-    queryKey: ["user", selectedLogin],
+    queryKey: ["user", selectedLogin, page],
     queryFn: async (): Promise<SelectedUserType> => {
       const response = await fetch(`https://api.github.com/users/${selectedLogin}`);
       if (!response.ok) {
@@ -49,8 +50,13 @@ export function Github({ setDataIsLoaded }: GitHubPropsType) {
   });
 
   const handleUserClick = (login: string) => {
+    setOpenRepo(false);
     setSelectedLogin(login);
   };
+
+  useEffect(() => {
+    if (searchTerm.length > 2) getUsers();
+  }, [page]);
 
   useEffect(() => {
     if (selectedLogin) {
@@ -62,8 +68,8 @@ export function Github({ setDataIsLoaded }: GitHubPropsType) {
     <div className={s.container}>
       <HeaderUp setSearchTerm={setSearchTerm} searchTerm={searchTerm} getUsers={getUsers} />
       {users && <UsersTable users={users} page={page} setPage={setPage} getUsers={getUsers} handleUserClick={handleUserClick} />}
-      {currentUser && <UserProfile userDetails={currentUser} />}
-      {(usersError || userError) && <h2>Something was wrong!</h2>}
+      {currentUser && <UserProfile userDetails={currentUser} openRepo={openRepo} setOpenRepo={setOpenRepo} />}
+      {(usersError || userError) && <h2 className="wrong">Something was wrong!</h2>}
     </div>
   );
 }

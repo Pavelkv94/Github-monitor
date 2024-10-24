@@ -465,3 +465,8 @@ button:focus {
   transform: translate(95vw, 90vh);
   transform: translate(95vw, 90vh);
 }
+
+.wrong {
+  color: white;
+  margin: 20px auto;
+}

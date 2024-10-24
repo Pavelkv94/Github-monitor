@@ -12,7 +12,9 @@ type UsersTablePropsType = {
   handleUserClick: (login: string) => void;
 };
 
-export const UsersTable: React.FC<UsersTablePropsType> = ({ users, page, setPage, getUsers, handleUserClick }) => {
+export const UsersTable: React.FC<UsersTablePropsType> = ({ users, page, setPage, handleUserClick }) => {
+  const totalPages = Math.ceil(users.total_count / 15);
+
   return users.total_count !== 0 ? (
     <>
       <div className={s.usersList}>
@@ -20,7 +22,7 @@ export const UsersTable: React.FC<UsersTablePropsType> = ({ users, page, setPage
           <UsersCell key={i} user={user} handleUserClick={handleUserClick} />
         ))}
       </div>
-      <Paginator page={page} totalCount={users.total_count} setPage={setPage} getUsers={getUsers} />
+      <Paginator page={page} totalPages={totalPages} setPage={setPage} />
     </>
   ) : (
     <p className={s.noSearch}>No search results.</p>

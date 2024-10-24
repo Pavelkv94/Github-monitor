@@ -2,18 +2,15 @@ import s from "./Paginator.module.css";
 
 type PaginatorPropsType = {
   page: number;
-  totalCount: number;
+  totalPages: number;
   setPage: (page: number) => void;
-  getUsers: () => void;
 };
 
-const Paginator = ({ page, totalCount, setPage, getUsers }: PaginatorPropsType) => {
-  const totalPages = Math.ceil(totalCount / 15);
+const Paginator = ({ page, totalPages, setPage }: PaginatorPropsType) => {
 
   const handlePageChange = (newPage: number) => {
     if (newPage >= 1 && newPage <= totalPages) {
       setPage(newPage);
-      getUsers();
     }
   };
 
