@@ -9,36 +9,15 @@ type UsersTablePropsType = {
   page: number;
   setPage: (page: number) => void;
   getUsers: () => void;
+  handleUserClick: (login: string) => void;
 };
 
-export const UsersTable: React.FC<UsersTablePropsType> = ({ users, page, setPage, getUsers }) => {
-  // const [users, setUsers] = useState<SearchUserType[]>([])
-  // const [selectedUser, setSelectedUser] = useState<SearchUserType | null>(null);
-
-  // const [userDetails, setUserDetails] = useState<UserType | null>(null);
-
-  // useEffect(() => {
-  //     axios.get<SearchResult>(`https://api.github.com/search/users?q=${term}`)
-  //         .then(res => {
-  //             setUsers(res.data.items)
-  //         })
-  // }, [term])
-
-  // useEffect(() => {
-  //   if (!!selectedUser) {
-  //     axios
-  //       .get<UserType>(`https://api.github.com/users/${selectedUser.login}`)
-  //       .then((res) => {
-  //         setUserDetails(res.data);
-  //       });
-  //   }
-  // }, [selectedUser]);
-
+export const UsersTable: React.FC<UsersTablePropsType> = ({ users, page, setPage, getUsers, handleUserClick }) => {
   return users.total_count !== 0 ? (
     <>
       <div className={s.usersList}>
         {users.items.map((user, i) => (
-          <UsersCell key={i} user={user} />
+          <UsersCell key={i} user={user} handleUserClick={handleUserClick} />
         ))}
       </div>
       <Paginator page={page} totalCount={users.total_count} setPage={setPage} getUsers={getUsers} />

@@ -3,9 +3,10 @@ import s from "./UsersCell.module.css";
 
 type UserRowType = {
   user: UserType;
+  handleUserClick: (login:string) => void
 };
-const UsersCell = ({ user }: UserRowType) => {
-  return <div className={s.userCell}>{user.login}</div>;
+const UsersCell = ({ user, handleUserClick }: UserRowType) => {
+  return <div className={s.userCell} onClick={() => handleUserClick(user.login)}>{user.login}</div>;
 };
 
 export default UsersCell;

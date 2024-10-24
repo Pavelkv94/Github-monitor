@@ -1,34 +1,21 @@
-import React, { useEffect, useState } from 'react';
-import s from './Repositories.module.css';
+import React from "react";
+import s from "./Repositories.module.css";
+import { RepoType } from "../../types/input-types";
+import Repo from "./Repo/Repo";
 
+type RepositoriesPropsType = {
+  data: RepoType[];
+};
+export const Repositories: React.FC<RepositoriesPropsType> = ({ data }) => {
+  return (
+    <div className={s.reposWrapper}>
+      <h2>REPOSITORIES LIST:</h2>
 
-
-export const Repositories: React.FC<any> = ({ selectedUser, setUserDetails }) => {
-
-    const [repo, setRepo] = useState<any[] | null>(null)
-
-    // useEffect(() => {
-    //     if (!!selectedUser) {
-    //         axios.get<any>(`https://api.github.com/users/${selectedUser.login}/repos`)
-    //             .then(res => {
-    //                 setRepo(res.data)
-    //             })
-    //     }
-    // }, [selectedUser])
-
-    return (<div className={s.repos}>
-        {repo?.map((u: any) =>
-            <div>
-                <a href={u.html_url} target="_blank">{u.name}</a>
-                <div className={s.data}>
-                    <b>{u.language}  </b> / updated - {u.updated_at}
-                </div>
-
-                <hr />
-            </div>
-        )}
-
-    </div>);
-}
-
-
+      <div className={s.repos}>
+        {data.map((r: RepoType, i) => (
+          <Repo repo={r} key={i} index={i + 1}/>
+        ))}
+      </div>
+    </div>
+  );
+};

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import s from "./Header.module.css";
 import searchIcon from "../../assets/search.svg";
 
@@ -32,7 +32,9 @@ export const HeaderUp: React.FC<HeaderPropsType> = ({ searchTerm, setSearchTerm,
           <div
             className={s.searchBtn}
             onClick={() => {
-              searchTerm.length > 2 && getUsers();
+              if (searchTerm.length > 2) {
+                getUsers();
+              }
             }}
           >
             <img src={searchIcon} width={26} />
